@@ -12,8 +12,8 @@ public class RecipeMenu {
         Scanner inputScanner = new Scanner(System.in);
 
         System.out.println("-----------------------------------------------------------------------------");
-        System.out.println("1 - List All Recipies");
-        System.out.println("0 - Quit\n");
+        System.out.println("1 - List Recipies");
+        System.out.println("0 - Back To Main Menu.\n");
 
         if (!inputScanner.hasNextInt())  {
             return 0;
@@ -23,7 +23,8 @@ public class RecipeMenu {
 
         switch (selection){
             case 0:
-                System.out.println("Selected 0. Exit Program");
+                System.out.println("-----------------------------------------------------------------------------");
+                System.out.println("Back To Main Menu.");
                 return 10;
             case 1:
                 System.out.println("Selected 1. Ask for Keto or Not. Then List Recipies.");

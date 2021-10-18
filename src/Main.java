@@ -14,78 +14,40 @@ public class Main {
         // While userchoice != 10
         // Go to menu
 
-        int userChoice = Menu();
-        while (userChoice != 10)
-            userChoice = Menu();
+            int userChoice = Menu();
+            while(userChoice != 10)
+                userChoice = Menu();
 
-        
         //RecipeMenu recipeMenu = new RecipeMenu();
     }
 
     public static int Menu() {
-
-        FoodDataStorage foodDataStorage = new FoodDataStorage();
-        foodDataStorage.storageFileExists();
-        int selection;
-        List<Food> foodList;
         Scanner inputScanner = new Scanner(System.in);
 
         System.out.println("-----------------------------------------------------------------------------");
-        System.out.println("1 - List All Foods");
-        System.out.println("2 - Add Food");
-        System.out.println("3 - Delete Item?");
+        System.out.println("1 - Go To Food Menu");
+        System.out.println("2 - Go To Recipies Menu");
         System.out.println("0 - Quit\n");
 
-        if(!inputScanner.hasNextInt()) return 1;
+        if (!inputScanner.hasNextInt())  {
+            return 0;
+        }
 
+        int selection = inputScanner.nextInt();
 
-        selection = inputScanner.nextInt();
-        switch (selection) {
-            case 0: // Exits Program.
-                System.out.println("Exiting Program.");
+        switch (selection){
+            case 0:
+                System.out.println("Selected 0. Exit Program");
                 return 10;
-                //System.exit(0);
             case 1:
-                foodList = foodDataStorage.getFoodList();
-                System.out.println("Keto only? y/n: ");
-
-                Scanner scannerInput = new Scanner(System.in);
-
-                // Clears the list of all non-keto foods
-                if (scannerInput.hasNext("y") || scannerInput.hasNext("yes"))
-                    foodList = foodDataStorage.getKetoList(foodList);
-                else
-
-                System.out.println(("-----------------------------------------------------------------------------"));
-                System.out.printf("%33s", "NAME");
-                System.out.printf("%12s", "KETO");
-                System.out.println();
-                System.out.println(("-----------------------------------------------------------------------------"));
-                for (int i = 0; i < foodList.size(); i++) {
-                    System.out.println(String.format("%33s %11s",
-                            foodList.get(i).getName(), foodList.get(i).isKetoFriendly()));
-                }
-                //System.out.println("These are all foods.");
-                return 1;
+                FoodMenu foodMenu = new FoodMenu();
+                return 0;
             case 2:
-                // System.out.println("Add Food Function");
-                Food newFood = foodDataStorage.createFood();
-                if (newFood != null) {
-                    foodList = foodDataStorage.getFoodList();
-                    foodList.add(newFood);
-                    foodDataStorage.storeFoodArrayList(foodList);
-                }
-                return 1;
-            case 3:
-                System.out.println("Delete Food Function");
-                System.out.print("Enter the name of the food you want to delete: ");
-
-                inputScanner = new Scanner(System.in);
-
-                foodDataStorage.deleteFoodByName(inputScanner.nextLine());
-                return 1;
+                RecipeMenu recipeMenu = new RecipeMenu();
+                return 0;
             default:
-                return 1;
+                return 0;
         }
     }
+
 }
