@@ -14,10 +14,12 @@ public class Main {
         // While userchoice != 10
         // Go to menu
 
-
         int userChoice = Menu();
         while (userChoice != 10)
             userChoice = Menu();
+
+        
+        //RecipeMenu recipeMenu = new RecipeMenu();
     }
 
     public static int Menu() {
@@ -40,7 +42,9 @@ public class Main {
         selection = inputScanner.nextInt();
         switch (selection) {
             case 0: // Exits Program.
-                System.exit(0);
+                System.out.println("Exiting Program.");
+                return 10;
+                //System.exit(0);
             case 1:
                 foodList = foodDataStorage.getFoodList();
                 System.out.println("Keto only? y/n: ");
