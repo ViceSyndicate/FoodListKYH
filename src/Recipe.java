@@ -1,13 +1,14 @@
 import java.security.PublicKey;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Recipe {
 
     private String name;
     private String []ingredients;
     private String description;
-    private String id;
     private boolean isKetoFriendly;
+    private UUID id;
 
     public String getName() {
         return name;
@@ -30,5 +31,6 @@ public class Recipe {
         this.ingredients = ingredients;
         this.description = description;
         this.isKetoFriendly = isKetoFriendly;
+        this.id = UUID.randomUUID();
     }
 }

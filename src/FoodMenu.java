@@ -25,7 +25,6 @@ public class FoodMenu {
 
         if(!inputScanner.hasNextInt()) return 1;
 
-
         selection = inputScanner.nextInt();
         switch (selection) {
             case 0: // Exits Program.
