@@ -87,7 +87,7 @@ public class FoodDataAndLogic {
         List<Food> foodList = getFoodList();
 
         for(int i = 0; i < foodList.size(); i++){
-            if (foodName.equalsIgnoreCase(foodList.get(i).getName().toLowerCase())) {
+            if (foodName.equalsIgnoreCase(foodList.get(i).getName())) {
                 System.out.println("Removing: " + foodList.get(i).getName());
                 foodList.remove(i);
             }

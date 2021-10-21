@@ -96,7 +96,7 @@ public class RecipeDataAndLogic {
         ArrayList<Recipe> recipeList = getRecipeList();
 
         for(int i = 0; i < recipeList.size(); i++){
-            if (recipeName.equalsIgnoreCase(recipeList.get(i).getName().toLowerCase())) {
+            if (recipeName.equalsIgnoreCase(recipeList.get(i).getName())) {
                 System.out.println("Removing: " + recipeList.get(i).getName());
                 recipeList.remove(i);
             }
