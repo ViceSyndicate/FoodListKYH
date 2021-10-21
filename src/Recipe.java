@@ -1,35 +1,18 @@
 import java.io.Serializable;
 import java.util.UUID;
 
-public class Recipe implements Serializable {
+public class Recipe extends Food {
 
-    private String name;
     private String []ingredients;
     private String description;
-    private boolean isKetoFriendly;
     private UUID id;
 
-    public String getName() {
-        return name;
-    }
-
-    public String[] getIngredients() {
-        return ingredients;
-    }
-
-    public boolean getIsKetoFriendly() {
-        return isKetoFriendly;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public Recipe (String name, String []ingredients, String description, boolean isKetoFriendly){
-        this.name = name;
+    public Recipe (String name, String []ingredients, String description, boolean ketoFriendly){
+        super(name, ketoFriendly);
         this.ingredients = ingredients;
         this.description = description;
-        this.isKetoFriendly = isKetoFriendly;
         this.id = UUID.randomUUID();
     }
+    public String[] getIngredients() { return ingredients; }
+    public String getDescription() { return description; }
 }

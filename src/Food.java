@@ -5,18 +5,13 @@ public class Food implements Serializable {
 
     private String id;
     private String name;
-    private boolean isKetoFriendly;
+    private boolean ketoFriendly;
 
-    // Takes a string FoodName and Boolean if it is keto friendly or not.
-    public Food(String name, boolean isKetoFriendly) {
+    public Food(String name, boolean ketoFriendly) {
         this.name = name;
-        this.isKetoFriendly = isKetoFriendly;
+        this.ketoFriendly = ketoFriendly;
         this.id = UUID.randomUUID().toString();
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public boolean getIsKetoFriendly() { return isKetoFriendly; }
+    public String getName() { return name; }
+    public boolean getIsKetoFriendly() { return ketoFriendly; }
 }
