@@ -8,14 +8,11 @@ public class FoodMenu {
             userChoice = Menu();
     }
 
-
     public static int Menu() {
 
-        FoodDataStorage foodDataStorage = new FoodDataStorage();
-        foodDataStorage.storageFileExists();
-        int selection;
+        FoodDataAndLogic foodDataAndLogic = new FoodDataAndLogic();
+        foodDataAndLogic.storageFileExists();
         List<Food> foodList;
-        Scanner inputScanner = new Scanner(System.in);
 
         System.out.println("-----------------------------------------------------------------------------");
         System.out.println("1 - List All Foods");
@@ -23,24 +20,26 @@ public class FoodMenu {
         System.out.println("3 - Delete Item?");
         System.out.println("0 - Back To Main Menu.\n");
 
-        if(!inputScanner.hasNextInt()) return 1;
+        Scanner inputScanner = new Scanner(System.in);
+        // If user doesn't enter valid input. Display menu again.
+        if(!inputScanner.hasNextInt()) return 0;
 
-        selection = inputScanner.nextInt();
+        int selection = inputScanner.nextInt();
+
         switch (selection) {
-            case 0: // Exits Program.
+            case 0:
                 System.out.println("-----------------------------------------------------------------------------");
                 System.out.println("Back To Main Menu.");
                 return 10;
-            //System.exit(0);
             case 1:
-                foodList = foodDataStorage.getFoodList();
+                foodList = foodDataAndLogic.getFoodList();
                 System.out.println("Keto only? y/n: ");
 
                 Scanner scannerInput = new Scanner(System.in);
 
                 // Clears the list of all non-keto foods
                 if (scannerInput.hasNext("y") || scannerInput.hasNext("yes"))
-                    foodList = foodDataStorage.getKetoList(foodList);
+                    foodList = foodDataAndLogic.getKetoList(foodList);
                 else
 
                     System.out.println(("-----------------------------------------------------------------------------"));
@@ -52,27 +51,25 @@ public class FoodMenu {
                     System.out.println(String.format("%33s %11s",
                             foodList.get(i).getName(), foodList.get(i).isKetoFriendly()));
                 }
-                //System.out.println("These are all foods.");
-                return 1;
+                return 0;
             case 2:
-                // System.out.println("Add Food Function");
-                Food newFood = foodDataStorage.createFood();
-                if (newFood != null) {
-                    foodList = foodDataStorage.getFoodList();
+                Food newFood = foodDataAndLogic.createFood();
+                if (newFood != null) { // May be redundant...
+                    foodList = foodDataAndLogic.getFoodList();
                     foodList.add(newFood);
-                    foodDataStorage.storeFoodArrayList(foodList);
+                    foodDataAndLogic.storeFoodArrayList(foodList);
                 }
-                return 1;
+                return 0;
             case 3:
                 System.out.println("Delete Food Function");
                 System.out.print("Enter the name of the food you want to delete: ");
 
                 inputScanner = new Scanner(System.in);
 
-                foodDataStorage.deleteFoodByName(inputScanner.nextLine());
-                return 1;
+                foodDataAndLogic.deleteFoodByName(inputScanner.nextLine());
+                return 0;
             default:
-                return 1;
+                return 0;
         }
     }
 }

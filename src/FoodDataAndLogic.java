@@ -4,10 +4,9 @@ import java.util.List;
 import java.util.Scanner;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 
 
-public class FoodDataStorage {
+public class FoodDataAndLogic {
 
     String fileName = "FoodStorage.txt";
 
@@ -53,10 +52,11 @@ public class FoodDataStorage {
         ArrayList<Food> foodList = new ArrayList<Food>();
         try {
             FileInputStream inputFile = new FileInputStream(fileName);
-            ObjectInputStream objectInput = new ObjectInputStream(inputFile);
+            ObjectInputStream inputObject = new ObjectInputStream(inputFile);
 
             while (true) {
-                Food food = (Food) objectInput.readObject();
+                // May need to cast directly to "ArrayList<Food> foodList = (ArrayList<Food>)"
+                Food food = (Food) inputObject.readObject();
                 foodList.add(food);
             }
         }
@@ -68,21 +68,17 @@ public class FoodDataStorage {
     }
 
     public Food createFood() {
-
         String foodName;
-        boolean isKetoFriendly;
+        boolean isKetoFriendly = false;
 
         System.out.print("Enter the name of the food: ");
-        Scanner scannerInput = new Scanner(System.in);
-        foodName = scannerInput.nextLine();
+        Scanner scanner = new Scanner(System.in);
+        foodName = scanner.nextLine();
 
         System.out.println("\nIs it Keto friendly? Yes/No: ");
-        if (scannerInput.hasNext("y") || scannerInput.hasNext("yes"))
+        if (scanner.hasNext("y") || scanner.hasNext("yes")) {
             isKetoFriendly = true;
-        else if (scannerInput.hasNext("n") || scannerInput.hasNext("no"))
-            isKetoFriendly = false;
-        else
-            return null;
+        }
 
         return new Food(foodName, isKetoFriendly);
     }

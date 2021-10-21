@@ -1,8 +1,7 @@
-import java.security.PublicKey;
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.UUID;
 
-public class Recipe {
+public class Recipe implements Serializable {
 
     private String name;
     private String []ingredients;
