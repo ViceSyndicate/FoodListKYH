@@ -62,7 +62,12 @@ public class RecipeMenu {
                 }
                 return 0;
             case 3:
-                System.out.println("Selected 3. Delete a Recipe. WIP");
+                System.out.println("Delete Food Function");
+                System.out.print("Enter the name of the food you want to delete: ");
+
+                inputScanner = new Scanner(System.in);
+
+                recipeDataAndLogic.deleteRecipeByName(inputScanner.nextLine());
                 return 0;
             default:
                 return 0;

@@ -91,4 +91,16 @@ public class RecipeDataAndLogic {
         }
         return ketoFoods;
     }
+
+    public void deleteRecipeByName(String recipeName) {
+        ArrayList<Recipe> recipeList = getRecipeList();
+
+        for(int i = 0; i < recipeList.size(); i++){
+            if (recipeName.equalsIgnoreCase(recipeList.get(i).getName().toLowerCase())) {
+                System.out.println("Removing: " + recipeList.get(i).getName());
+                recipeList.remove(i);
+            }
+        }
+        storeRecipeArrayList(recipeList);
+    }
 }
