@@ -33,9 +33,27 @@ public class RecipeMenu {
                 return 10;
             case 1:
                 System.out.println("Selected 1. Ask for Keto or Not. Then List Recipies. WIP");
+                recipeList = recipeDataAndLogic.getRecipeList();
+                System.out.println("Keto only? y/n: ");
+
+                Scanner scannerInput = new Scanner(System.in);
+
+                // Clears the list of all non-keto foods
+                if (scannerInput.hasNext("y") || scannerInput.hasNext("yes")){
+                    recipeList = recipeDataAndLogic.getKetoList(recipeList);
+                }
+                System.out.println(("-----------------------------------------------------------------------------"));
+                System.out.printf("%33s", "NAME");
+                System.out.printf("%12s", "KETO");
+                System.out.println();
+                System.out.println(("-----------------------------------------------------------------------------"));
+                for (int i = 0; i < recipeList.size(); i++) {
+                    System.out.println(String.format("%33s %11s",
+                            recipeList.get(i).getName(), recipeList.get(i).getIsKetoFriendly()));
+                }
                 return 0;
             case 2:
-                System.out.println("Selected 2. Create a Recipe. WIP");
+                System.out.println("Selected 2. Create a Recipe.");
                 Recipe newRecipe = recipeDataAndLogic.createRecipe();
                 if (newRecipe != null) { // May be redundant...
                     recipeList = recipeDataAndLogic.getRecipeList();

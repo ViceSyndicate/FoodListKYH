@@ -1,4 +1,5 @@
 import java.io.*;
+import java.lang.reflect.Array;
 import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
@@ -77,5 +78,17 @@ public class RecipeDataAndLogic {
             ex.printStackTrace();
         }
         return  recipeList;
+    }
+
+    public ArrayList<Recipe> getKetoList(List<Recipe> recipeList) {
+
+        ArrayList<Recipe> ketoFoods = new ArrayList<Recipe>();
+
+        for (int i = 0; i < recipeList.size(); i++)
+        {
+            if (recipeList.get(i).getIsKetoFriendly() == true)
+                ketoFoods.add(recipeList.get(i));
+        }
+        return ketoFoods;
     }
 }

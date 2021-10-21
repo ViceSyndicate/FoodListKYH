@@ -42,7 +42,7 @@ public class FoodDataAndLogic {
 
         for (int i = 0; i < foodList.size(); i++)
         {
-            if (foodList.get(i).isKetoFriendly() == true)
+            if (foodList.get(i).getIsKetoFriendly() == true)
                 ketoFoods.add(foodList.get(i));
         }
         return ketoFoods;

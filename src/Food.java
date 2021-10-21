@@ -14,13 +14,9 @@ public class Food implements Serializable {
         this.id = UUID.randomUUID().toString();
     }
 
-    public String getId() {
-        return id;
-    }
-
     public String getName() {
         return name;
     }
 
-    public boolean isKetoFriendly() { return isKetoFriendly; }
+    public boolean getIsKetoFriendly() { return isKetoFriendly; }
 }

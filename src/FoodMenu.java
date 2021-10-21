@@ -38,18 +38,17 @@ public class FoodMenu {
                 Scanner scannerInput = new Scanner(System.in);
 
                 // Clears the list of all non-keto foods
-                if (scannerInput.hasNext("y") || scannerInput.hasNext("yes"))
+                if (scannerInput.hasNext("y") || scannerInput.hasNext("yes")) {
                     foodList = foodDataAndLogic.getKetoList(foodList);
-                else
-
-                    System.out.println(("-----------------------------------------------------------------------------"));
+                }
+                System.out.println(("-----------------------------------------------------------------------------"));
                 System.out.printf("%33s", "NAME");
                 System.out.printf("%12s", "KETO");
                 System.out.println();
                 System.out.println(("-----------------------------------------------------------------------------"));
                 for (int i = 0; i < foodList.size(); i++) {
                     System.out.println(String.format("%33s %11s",
-                            foodList.get(i).getName(), foodList.get(i).isKetoFriendly()));
+                            foodList.get(i).getName(), foodList.get(i).getIsKetoFriendly()));
                 }
                 return 0;
             case 2:

@@ -17,8 +17,8 @@ public class Recipe implements Serializable {
         return ingredients;
     }
 
-    public static Recipe getIsKetoFriendly() {
-        return getIsKetoFriendly();
+    public boolean getIsKetoFriendly() {
+        return isKetoFriendly;
     }
 
     public String getDescription() {
