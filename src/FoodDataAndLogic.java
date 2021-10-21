@@ -48,7 +48,7 @@ public class FoodDataAndLogic {
         return ketoFoods;
     }
 
-    public List<Food> getFoodList() {
+    public ArrayList<Food> getFoodList() {
         ArrayList<Food> foodList = new ArrayList<Food>();
         try {
             FileInputStream inputFile = new FileInputStream(fileName);
@@ -79,12 +79,11 @@ public class FoodDataAndLogic {
         if (scanner.hasNext("y") || scanner.hasNext("yes")) {
             isKetoFriendly = true;
         }
-
         return new Food(foodName, isKetoFriendly);
     }
 
     public void deleteFoodByName(String foodName) {
-        List<Food> foodList = getFoodList();
+        ArrayList<Food> foodList = getFoodList();
 
         for(int i = 0; i < foodList.size(); i++){
             if (foodName.equalsIgnoreCase(foodList.get(i).getName())) {

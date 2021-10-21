@@ -5,20 +5,12 @@ public class Main {
 
     public static void main(String[] args) {
 
-
-        // I feel like we should have a non static Menu function that can return an error.
-        // If it does, we should handle that error in main() and discard the return value.
-        // And call the Menu function again.
-
-        // I think this needs to be re-written.
         // While userchoice != 10
         // Go to menu
 
             int userChoice = Menu();
             while(userChoice != 10)
                 userChoice = Menu();
-
-        //RecipeMenu recipeMenu = new RecipeMenu();
     }
 
     public static int Menu() {
