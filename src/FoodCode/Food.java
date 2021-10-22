@@ -1,3 +1,5 @@
+package FoodCode;
+
 import java.io.Serializable;
 import java.util.UUID;
 

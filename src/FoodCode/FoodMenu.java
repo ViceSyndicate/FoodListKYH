@@ -1,14 +1,17 @@
+package FoodCode;
+
 import java.util.List;
 import java.util.Scanner;
 
 public class FoodMenu {
-    FoodMenu() {
+
+    public FoodMenu() {
         int userChoice = Menu();
         while (userChoice != 10)
             userChoice = Menu();
     }
 
-    public static int Menu() {
+    private int Menu() {
 
         FoodDataAndLogic foodDataAndLogic = new FoodDataAndLogic();
         foodDataAndLogic.storageFileExists();
@@ -16,7 +19,7 @@ public class FoodMenu {
 
         System.out.println("-----------------------------------------------------------------------------");
         System.out.println("1 - List All Foods");
-        System.out.println("2 - Add Food");
+        System.out.println("2 - Add FoodCode.Food");
         System.out.println("3 - Delete Item?");
         System.out.println("0 - Back To Main Menu.");
 
@@ -60,7 +63,7 @@ public class FoodMenu {
                 }
                 return 0;
             case 3:
-                System.out.println("Delete Food Function");
+                System.out.println("Delete FoodCode.Food Function");
                 System.out.print("Enter the name of the food you want to delete: ");
 
                 inputScanner = new Scanner(System.in);

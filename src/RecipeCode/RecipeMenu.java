@@ -1,14 +1,16 @@
+package RecipeCode;
+
 import java.util.List;
 import java.util.Scanner;
 
 public class RecipeMenu {
-    RecipeMenu(){
+    public RecipeMenu(){
         int userChoice = Menu();
         while(userChoice != 10)
             userChoice = Menu();
     }
 
-    public int Menu() {
+    private int Menu() {
 
         RecipeDataAndLogic recipeDataAndLogic = new RecipeDataAndLogic();
         recipeDataAndLogic.storageFileExists();
@@ -76,7 +78,7 @@ public class RecipeMenu {
                 }
                 return 0;
             case 2:
-                System.out.println("Selected 2. Create a Recipe.");
+                System.out.println("Selected 2. Create a RecipeCode.Recipe.");
                 Recipe newRecipe = recipeDataAndLogic.createRecipe();
                 if (newRecipe != null) { // May be redundant...
                     recipeList = recipeDataAndLogic.getRecipeList();
@@ -85,7 +87,7 @@ public class RecipeMenu {
                 }
                 return 0;
             case 3:
-                System.out.println("Delete Food Function");
+                System.out.println("Delete FoodCode.Food Function");
                 System.out.print("Enter the name of the food you want to delete: ");
 
                 inputScanner = new Scanner(System.in);

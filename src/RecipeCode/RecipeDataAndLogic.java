@@ -1,3 +1,5 @@
+package RecipeCode;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -5,7 +7,7 @@ import java.util.Scanner;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
-public class RecipeDataAndLogic implements IData {
+public class RecipeDataAndLogic implements Interface.IData {
     String fileName = "RecipeStorage.txt";
 
     public void storageFileExists() {
@@ -38,7 +40,7 @@ public class RecipeDataAndLogic implements IData {
         String description;
         boolean isKetoFriendly = false;
 
-        System.out.print("Enter the Recipe name: ");
+        System.out.print("Enter the RecipeCode.Recipe name: ");
         Scanner scanner = new Scanner(System.in);
         name = scanner.nextLine();
 
@@ -62,7 +64,7 @@ public class RecipeDataAndLogic implements IData {
             FileInputStream inputFile = new FileInputStream(fileName);
             ObjectInputStream inputObject = new ObjectInputStream(inputFile);
             while (true) {
-                // May need to cast directly to "ArrayList<Recipe> recipeList = (ArrayList<Recipe>)"
+                // May need to cast directly to "ArrayList<RecipeCode.Recipe> recipeList = (ArrayList<RecipeCode.Recipe>)"
                 Recipe recipe = (Recipe) inputObject.readObject();
                 recipeList.add(recipe);
             }

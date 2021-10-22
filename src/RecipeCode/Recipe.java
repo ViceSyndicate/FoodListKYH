@@ -1,4 +1,7 @@
-import java.io.Serializable;
+package RecipeCode;
+
+import FoodCode.Food;
+
 import java.util.UUID;
 
 public class Recipe extends Food {

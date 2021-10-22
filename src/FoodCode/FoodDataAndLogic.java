@@ -1,3 +1,5 @@
+package FoodCode;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -5,7 +7,7 @@ import java.util.Scanner;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
-public class FoodDataAndLogic implements  IData{
+public class FoodDataAndLogic implements Interface.IData {
     String fileName = "FoodStorage.txt";
 
      public void storageFileExists(){
@@ -52,7 +54,7 @@ public class FoodDataAndLogic implements  IData{
             ObjectInputStream inputObject = new ObjectInputStream(inputFile);
 
             while (true) {
-                // May need to cast directly to "ArrayList<Food> foodList = (ArrayList<Food>)"
+                // May need to cast directly to "ArrayList<FoodCode.Food> foodList = (ArrayList<FoodCode.Food>)"
                 Food food = (Food) inputObject.readObject();
                 foodList.add(food);
             }
