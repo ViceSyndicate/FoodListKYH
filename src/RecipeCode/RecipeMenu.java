@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class RecipeMenu {
+
     public RecipeMenu(){
         int userChoice = Menu();
         while(userChoice != 10)
@@ -90,7 +91,7 @@ public class RecipeMenu {
                 System.out.println("Delete FoodCode.Food Function");
                 System.out.print("Enter the name of the food you want to delete: ");
 
-                inputScanner = new Scanner(System.in);
+                //inputScanner = new Scanner(System.in);
 
                 recipeDataAndLogic.deleteByName(inputScanner.nextLine());
                 return 0;

@@ -8,7 +8,8 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
 public class RecipeDataAndLogic implements Interface.IData {
-    String fileName = "RecipeStorage.txt";
+    String currentDir = System.getProperty("user.dir") + "\\src\\Data";
+    String fileName = currentDir + "RecipeStorage.txt";
 
     public void storageFileExists() {
         File storageFile = new File(fileName);

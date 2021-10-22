@@ -19,7 +19,7 @@ public class FoodMenu {
 
         System.out.println("-----------------------------------------------------------------------------");
         System.out.println("1 - List All Foods");
-        System.out.println("2 - Add FoodCode.Food");
+        System.out.println("2 - Add Food");
         System.out.println("3 - Delete Item?");
         System.out.println("0 - Back To Main Menu.");
 
@@ -66,7 +66,7 @@ public class FoodMenu {
                 System.out.println("Delete FoodCode.Food Function");
                 System.out.print("Enter the name of the food you want to delete: ");
 
-                inputScanner = new Scanner(System.in);
+                //inputScanner = new Scanner(System.in);
 
                 foodDataAndLogic.deleteByName(inputScanner.nextLine());
                 return 0;

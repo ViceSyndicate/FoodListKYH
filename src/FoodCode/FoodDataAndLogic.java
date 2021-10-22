@@ -8,7 +8,8 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
 public class FoodDataAndLogic implements Interface.IData {
-    String fileName = "FoodStorage.txt";
+    String currentDir = System.getProperty("user.dir") + "\\src\\Data";
+    String fileName = currentDir + "FoodStorage.txt";
 
      public void storageFileExists(){
         File storageFile = new File(fileName);
@@ -24,8 +25,8 @@ public class FoodDataAndLogic implements Interface.IData {
     public void storeFoodArrayList(List<Food> foodList) {
         try {
             FileOutputStream fileOutPutStream = new FileOutputStream(fileName);
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutPutStream);
 
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutPutStream);
             for (Food food : foodList) {
                 objectOutputStream.writeObject(food);
             }
