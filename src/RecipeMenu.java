@@ -1,6 +1,5 @@
 import java.util.List;
 import java.util.Scanner;
-import java.io.Console;
 
 public class RecipeMenu {
     RecipeMenu(){
@@ -19,7 +18,7 @@ public class RecipeMenu {
         System.out.println("1 - List Recipies");
         System.out.println("2 - Add Recipie");
         System.out.println("3 - Delete Recipie");
-        System.out.println("0 - Back To Main Menu.\n");
+        System.out.println("0 - Back To Main Menu.");
 
         Scanner inputScanner = new Scanner(System.in);
         // If user doesn't enter valid input. Display menu again.
@@ -91,7 +90,7 @@ public class RecipeMenu {
 
                 inputScanner = new Scanner(System.in);
 
-                recipeDataAndLogic.deleteRecipeByName(inputScanner.nextLine());
+                recipeDataAndLogic.deleteByName(inputScanner.nextLine());
                 return 0;
             default:
                 return 0;

@@ -5,10 +5,10 @@ import java.util.Scanner;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
-public class RecipeDataAndLogic {
+public class RecipeDataAndLogic implements IData {
     String fileName = "RecipeStorage.txt";
 
-    public boolean storageFileExists() {
+    public void storageFileExists() {
         File storageFile = new File(fileName);
         if (!storageFile.exists()) {
             try {
@@ -16,9 +16,7 @@ public class RecipeDataAndLogic {
             } catch (Exception e) {
                 System.out.println(e);
             }
-            return true;
         }
-        return false;
     }
 
     public void storeRecipeArrayList(List<Recipe> recipeList) {
@@ -86,7 +84,7 @@ public class RecipeDataAndLogic {
         return ketoFoods;
     }
 
-    public void deleteRecipeByName(String recipeName) {
+    public void deleteByName(String recipeName) {
         ArrayList<Recipe> recipeList = getRecipeList();
 
         for (int i = 0; i < recipeList.size(); i++) {

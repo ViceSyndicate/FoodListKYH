@@ -5,9 +5,7 @@ import java.util.Scanner;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
-
-public class FoodDataAndLogic {
-
+public class FoodDataAndLogic implements  IData{
     String fileName = "FoodStorage.txt";
 
      public void storageFileExists(){
@@ -15,8 +13,7 @@ public class FoodDataAndLogic {
         if (!storageFile.exists()) {
             try {
                 storageFile.createNewFile();
-            }
-            catch (Exception e){
+            } catch (Exception e){
                 System.out.println(e);
             }
         }
@@ -82,7 +79,7 @@ public class FoodDataAndLogic {
         return new Food(foodName, isKetoFriendly);
     }
 
-    public void deleteFoodByName(String foodName) {
+    public void deleteByName(String foodName) {
         ArrayList<Food> foodList = getFoodList();
 
         for(int i = 0; i < foodList.size(); i++){

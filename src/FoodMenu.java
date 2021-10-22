@@ -18,7 +18,7 @@ public class FoodMenu {
         System.out.println("1 - List All Foods");
         System.out.println("2 - Add Food");
         System.out.println("3 - Delete Item?");
-        System.out.println("0 - Back To Main Menu.\n");
+        System.out.println("0 - Back To Main Menu.");
 
         Scanner inputScanner = new Scanner(System.in);
         // If user doesn't enter valid input. Display menu again.
@@ -65,7 +65,7 @@ public class FoodMenu {
 
                 inputScanner = new Scanner(System.in);
 
-                foodDataAndLogic.deleteFoodByName(inputScanner.nextLine());
+                foodDataAndLogic.deleteByName(inputScanner.nextLine());
                 return 0;
             default:
                 return 0;
