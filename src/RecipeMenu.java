@@ -29,11 +29,11 @@ public class RecipeMenu {
 
         switch (selection){
             case 0:
-                System.out.println("-----------------------------------------------------------------------------");
+                System.out.println("----------------------------------------------------------------------------");
                 System.out.println("Back To Main Menu.");
                 return 10;
             case 1:
-                System.out.println("Selected 1. Ask for Keto or Not. Then List Recipies. WIP");
+                System.out.println("Selected 1. Ask for Keto or Not. Then List Recipies.");
                 recipeList = recipeDataAndLogic.getRecipeList();
                 System.out.println("Keto only? y/n: ");
 
@@ -43,32 +43,38 @@ public class RecipeMenu {
                 if (scannerInput.hasNext("y") || scannerInput.hasNext("yes")){
                     recipeList = recipeDataAndLogic.getKetoList(recipeList);
                 }
-//                System.out.println(("-----------------------------------------------------------------------------"));
-//                System.out.printf("%33s", "NAME");
-//                System.out.printf("%12s", "KETO");
-//                System.out.println();
-//                System.out.println(("-----------------------------------------------------------------------------"));
-//                for (int i = 0; i < recipeList.size(); i++) {
-//                    System.out.println(String.format("%33s %11s",
-//                            recipeList.get(i).getName(), recipeList.get(i).getIsKetoFriendly()));
-//                }
 
-                try {
-                    // - left align
-                    // -3 left align with 3 padding
-                    //.10s = max String length
-                    // %n = new line
-                    String fmt = "%3s %3.10s %3$50s%n";
-                    System.out.printf(fmt, "ID","Name", "Description");
-                    System.out.printf(fmt, "---","-----","-----");
-                    for (int i = 0; i < recipeList.size(); i++){
-                        System.out.printf(fmt, i, recipeList.get(i).getName(), recipeList.get(i).getDescription());
+                // Comments for understanding formatting
+                /*
+                 %-s          left align type String
+                 %-3s         left align type String with 3 padding
+                 %-3.10s      left align type String with 3 padding with 10 char max
+                 %[flags][width][.precision]conversion-character
+                 */
+                System.out.println(("------------------------------------------------------------"));
+                String fmt = "%-3s %-48.50s %-12s";
+                System.out.printf(fmt, "ID", "| NAME", "| KETO");
+                System.out.println();
+                System.out.printf("----" + "+------------------------------------------------+" + "------");
+                System.out.println();
+                for (int i = 0; i < recipeList.size(); i++) {
+                    System.out.println(String.format(fmt,
+                            i,"| " + recipeList.get(i).getName(), "| " + recipeList.get(i).getIsKetoFriendly()));
+                }
+                System.out.println("^");
+                System.out.println("Enter the ID of the recipe you'd like more information on");
+                System.out.println("Or enter anything else than a number to return to the Menu.");
+
+                scannerInput = new Scanner(System.in);
+                if (scannerInput.hasNextInt()){
+                    Recipe chosenRecipe = recipeList.get(scannerInput.nextInt());
+                    System.out.println("Name: "+chosenRecipe.getName());
+                    System.out.println("Ingredients:");
+                    for (int i = 0; i < chosenRecipe.getIngredients().length; i++) {
+                        System.out.println(" - " + chosenRecipe.getIngredients()[i]);
                     }
+                    System.out.println("Description: " + chosenRecipe.getDescription());
                 }
-                catch (Exception e){
-                    System.out.println(e);
-                }
-
                 return 0;
             case 2:
                 System.out.println("Selected 2. Create a Recipe.");
