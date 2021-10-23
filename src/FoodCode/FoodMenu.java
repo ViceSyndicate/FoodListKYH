@@ -1,6 +1,6 @@
 package FoodCode;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class FoodMenu {
@@ -15,7 +15,7 @@ public class FoodMenu {
 
         FoodDataAndLogic foodDataAndLogic = new FoodDataAndLogic();
         foodDataAndLogic.storageFileExists();
-        List<Food> foodList;
+        ArrayList<Food> foodList;
 
         System.out.println("-----------------------------------------------------------------------------");
         System.out.println("1 - List All Foods");

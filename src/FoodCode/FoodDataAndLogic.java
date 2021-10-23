@@ -1,6 +1,7 @@
 package FoodCode;
 
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -25,7 +26,6 @@ public class FoodDataAndLogic implements Interface.IData {
     public void storeFoodArrayList(List<Food> foodList) {
         try {
             FileOutputStream fileOutPutStream = new FileOutputStream(fileName);
-
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutPutStream);
             for (Food food : foodList) {
                 objectOutputStream.writeObject(food);
@@ -36,16 +36,19 @@ public class FoodDataAndLogic implements Interface.IData {
         }
     }
 
-    public List<Food> getKetoList(List<Food> foodList) {
+    public Food createFood() {
+        String foodName;
+        boolean isKetoFriendly = false;
 
-        ArrayList<Food> ketoFoods = new ArrayList<>();
+        System.out.print("Enter the name of the food: ");
+        Scanner scanner = new Scanner(System.in);
+        foodName = scanner.nextLine();
 
-        for (int i = 0; i < foodList.size(); i++)
-        {
-            if (foodList.get(i).getIsKetoFriendly() == true)
-                ketoFoods.add(foodList.get(i));
+        System.out.println("\nIs it Keto friendly? Yes/No: ");
+        if (scanner.hasNext("y") || scanner.hasNext("yes")) {
+            isKetoFriendly = true;
         }
-        return ketoFoods;
+        return new Food(foodName, isKetoFriendly);
     }
 
     public ArrayList<Food> getFoodList() {
@@ -67,19 +70,16 @@ public class FoodDataAndLogic implements Interface.IData {
         return foodList;
     }
 
-    public Food createFood() {
-        String foodName;
-        boolean isKetoFriendly = false;
+    public ArrayList<Food> getKetoList(ArrayList<Food> foodList) {
 
-        System.out.print("Enter the name of the food: ");
-        Scanner scanner = new Scanner(System.in);
-        foodName = scanner.nextLine();
+        ArrayList<Food> ketoFoods = new ArrayList<>();
 
-        System.out.println("\nIs it Keto friendly? Yes/No: ");
-        if (scanner.hasNext("y") || scanner.hasNext("yes")) {
-            isKetoFriendly = true;
+        for (int i = 0; i < foodList.size(); i++)
+        {
+            if (foodList.get(i).getIsKetoFriendly() == true)
+                ketoFoods.add(foodList.get(i));
         }
-        return new Food(foodName, isKetoFriendly);
+        return ketoFoods;
     }
 
     public void deleteByName(String foodName) {
