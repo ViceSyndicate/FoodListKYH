@@ -41,7 +41,7 @@ public class RecipeDataAndLogic implements Interface.IData {
         String description;
         boolean isKetoFriendly = false;
 
-        System.out.print("Enter the RecipeCode.Recipe name: ");
+        System.out.print("Enter the Recipe name: ");
         Scanner scanner = new Scanner(System.in);
         name = scanner.nextLine();
 
@@ -56,7 +56,27 @@ public class RecipeDataAndLogic implements Interface.IData {
             isKetoFriendly = true;
         }
         Recipe recipe = new Recipe(name, ingredients, description, isKetoFriendly);
+        // If the recipe is not valid: Return null.
+        if (!validRecipe(recipe)){
+            return null;
+        }
         return recipe;
+    }
+
+    public boolean validRecipe(Recipe recipe){
+        if (recipe.getName().isEmpty()) {
+            return false;
+        }
+        if (recipe.getIngredients().length < 1){
+            return false;
+        }
+        // Check every Ingredient in the recipe and return false if any of them are empty strings.
+        for (int i = 0; i < recipe.getIngredients().length; i ++){
+            if (recipe.getIngredients()[i].isEmpty()){
+                return false;
+            }
+        }
+        return true;
     }
 
     public ArrayList<Recipe> getRecipeList() {
@@ -87,15 +107,21 @@ public class RecipeDataAndLogic implements Interface.IData {
         return ketoFoods;
     }
 
-    public void deleteByName(String recipeName) {
+    public boolean deleteByName() {
+        boolean deleted = false;
         ArrayList<Recipe> recipeList = getRecipeList();
+        Scanner scanner = new Scanner(System.in);
+        String recipeName = scanner.nextLine();
 
         for (int i = 0; i < recipeList.size(); i++) {
             if (recipeName.equalsIgnoreCase(recipeList.get(i).getName())) {
                 System.out.println("Removing: " + recipeList.get(i).getName());
                 recipeList.remove(i);
+                deleted = true;
             }
         }
+        // Store new RecipeList after having removed the Recipe.
         storeRecipeArrayList(recipeList);
+        return deleted;
     }
 }

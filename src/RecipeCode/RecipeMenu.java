@@ -68,7 +68,7 @@ public class RecipeMenu {
                 System.out.println("Or enter anything else than a number to return to the Menu.");
 
                 scannerInput = new Scanner(System.in);
-                if (scannerInput.hasNextInt()){
+                if (scannerInput.hasNextInt() && scannerInput.nextInt() <= recipeList.size()-1){
                     Recipe chosenRecipe = recipeList.get(scannerInput.nextInt());
                     System.out.println("Name: "+chosenRecipe.getName());
                     System.out.println("Ingredients:");
@@ -81,19 +81,22 @@ public class RecipeMenu {
             case 2:
                 System.out.println("Selected 2. Create a RecipeCode.Recipe.");
                 Recipe newRecipe = recipeDataAndLogic.createRecipe();
-                if (newRecipe != null) { // May be redundant...
-                    recipeList = recipeDataAndLogic.getRecipeList();
-                    recipeList.add(newRecipe);
-                    recipeDataAndLogic.storeRecipeArrayList(recipeList);
+                if (newRecipe == null) {
+                    System.out.println("The recipe information you entered is invalid.");
+                    System.out.println("All Recipes must have : " +
+                            "A name, More than 1 Ingredient & no empty ingredient names");
+                    return 0;
                 }
+                recipeList = recipeDataAndLogic.getRecipeList();
+                recipeList.add(newRecipe);
+                recipeDataAndLogic.storeRecipeArrayList(recipeList);
                 return 0;
             case 3:
-                System.out.println("Delete FoodCode.Food Function");
                 System.out.print("Enter the name of the food you want to delete: ");
-
-                //inputScanner = new Scanner(System.in);
-
-                recipeDataAndLogic.deleteByName(inputScanner.nextLine());
+                // If failed to delete Recipe.
+                if (!recipeDataAndLogic.deleteByName()){
+                    System.out.println("Couldn't removed that Food. Did you enter the right Name?");
+                }
                 return 0;
             default:
                 return 0;

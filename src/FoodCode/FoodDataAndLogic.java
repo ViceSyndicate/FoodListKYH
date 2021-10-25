@@ -1,5 +1,7 @@
 package FoodCode;
 
+import RecipeCode.Recipe;
+
 import java.io.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -48,7 +50,18 @@ public class FoodDataAndLogic implements Interface.IData {
         if (scanner.hasNext("y") || scanner.hasNext("yes")) {
             isKetoFriendly = true;
         }
-        return new Food(foodName, isKetoFriendly);
+        Food food = new Food(foodName, isKetoFriendly);
+        if (!validFood(food)){
+            return null;
+        }
+        return food;
+    }
+
+    public boolean validFood(Food food){
+        if (food.getName().isEmpty()) {
+            return false;
+        }
+        return true;
     }
 
     public ArrayList<Food> getFoodList() {
@@ -82,15 +95,20 @@ public class FoodDataAndLogic implements Interface.IData {
         return ketoFoods;
     }
 
-    public void deleteByName(String foodName) {
-        ArrayList<Food> foodList = getFoodList();
-
-        for(int i = 0; i < foodList.size(); i++){
-            if (foodName.equalsIgnoreCase(foodList.get(i).getName())) {
-                System.out.println("Removing: " + foodList.get(i).getName());
-                foodList.remove(i);
-            }
-        }
-        storeFoodArrayList(foodList);
+    public boolean deleteByName() {
+         boolean deleted = false;
+         ArrayList<Food> foodList = getFoodList();
+         Scanner scanner = new Scanner(System.in);
+         String foodName = scanner.nextLine();
+         for(int i = 0; i < foodList.size(); i++){
+             if (foodName.equalsIgnoreCase(foodList.get(i).getName())) {
+                 System.out.println("Removing: " + foodList.get(i).getName());
+                 foodList.remove(i);
+                 deleted = true;
+             }
+         }
+         // Store new FoodList after having removed the Food.
+         storeFoodArrayList(foodList);
+         return deleted;
     }
 }

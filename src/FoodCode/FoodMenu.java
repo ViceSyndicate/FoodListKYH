@@ -56,19 +56,21 @@ public class FoodMenu {
                 return 0;
             case 2:
                 Food newFood = foodDataAndLogic.createFood();
-                if (newFood != null) { // May be redundant...
-                    foodList = foodDataAndLogic.getFoodList();
-                    foodList.add(newFood);
-                    foodDataAndLogic.storeFoodArrayList(foodList);
+                if (newFood == null) {
+                    System.out.println("The Food information you entered is invalid.");
+                    System.out.println("A food can't have a empty name.");
+                    return 0;
                 }
+                foodList = foodDataAndLogic.getFoodList();
+                foodList.add(newFood);
+                foodDataAndLogic.storeFoodArrayList(foodList);
                 return 0;
             case 3:
-                System.out.println("Delete FoodCode.Food Function");
                 System.out.print("Enter the name of the food you want to delete: ");
-
-                //inputScanner = new Scanner(System.in);
-
-                foodDataAndLogic.deleteByName(inputScanner.nextLine());
+                // If failed to delete Food.
+                if (!foodDataAndLogic.deleteByName()){
+                    System.out.println("Couldn't removed that Recipe. Did you enter the right Name?");
+                }
                 return 0;
             default:
                 return 0;

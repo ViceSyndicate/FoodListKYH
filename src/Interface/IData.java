@@ -1,6 +1,6 @@
 package Interface;
 
 public interface IData { // Stylepoints \o/
-    void deleteByName(String name);
+    boolean deleteByName();
     void storageFileExists();
 }
