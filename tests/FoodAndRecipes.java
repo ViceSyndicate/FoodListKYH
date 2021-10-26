@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 import java.util.ArrayList;
 
-public class ObjectValidator {
+public class FoodAndRecipes {
 
     //setup
     RecipeDataAndLogic recipeDataAndLogic = new RecipeDataAndLogic();
@@ -21,7 +21,11 @@ public class ObjectValidator {
     ArrayList<Recipe> mockupInvalidRecipeList = new ArrayList<Recipe>();
 
     // Create mockup Recipes and add them to the mockup ArrayLists
-    public ObjectValidator(){
+    public FoodAndRecipes(){
+        createMockupRecipeLists();
+    }
+
+    private void createMockupRecipeLists(){
         String[] pizzaIngredients = {"Cheese", "Dough", "Tomato Sauce", "Ham", "Oregano"};
         Recipe vezuvio = new Recipe("Pizza", pizzaIngredients, "Description Is Not Empty", false );
 
@@ -113,61 +117,4 @@ public class ObjectValidator {
         Assertions.assertTrue(recipe.containsMoreThanThreeNumbersInARow("1234"));
         Assertions.assertTrue(recipe.containsMoreThanThreeNumbersInARow("123"));
     }
-
-
-    /*
-    // WIP
-    @Test public void testFoodStorageFileIsCorrupt() throws Exception {
-
-    }
-
-    // WIP
-    @Test public void testRecipeStorageFileIsCorrupt(){
-
-    }
-
-
-     */
-    /*
-    @Test public void userInput (){
-
-        recipeDataAndLogic.createRecipe();
-
-        String userInputName = "Köttfärssås med Spaghetti\r\n";
-        String userInputIngredients = "Köttfärs, sås, Spaghetti\r\n";
-        String userInputDescription = "Stek Köttfärs och släng i lite herbs/spices, Koka spaghetti och mixa.";
-        String userInputIsKeto = "Stek Köttfärs och släng i lite herbs/spices, Koka spaghetti och mixa.";
-        InputStream stdin = System.in;
-
-        try {
-            System.setIn(new ByteArrayInputStream(userInputName.getBytes()));
-            System.setIn(new ByteArrayInputStream(userInputIngredients.getBytes()));
-            System.setIn(new ByteArrayInputStream(userInputDescription.getBytes()));
-            System.setIn(new ByteArrayInputStream(userInputIsKeto.getBytes()));
-
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-     */
-
-    // WIP Trying to simulate user input when calling RecipeDataAndLogic.createRecipe().
-    /*
-    @Test public void testName() {
-
-        String data = "Niclas\r\n";
-        InputStream stdin = System.in;
-        try {
-            System.setIn(new ByteArrayInputStream(data.getBytes()));
-            Player.createNewPlayer();
-            if(Player.getName().equals("Niclas")) {
-                System.out.println("Same!");
-            } else {
-                System.out.println("Not same!");
-            }
-        }finally {
-            System.setIn(stdin);
-        }
-    }
-     */
 }
