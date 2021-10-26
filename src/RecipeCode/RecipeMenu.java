@@ -87,7 +87,7 @@ public class RecipeMenu {
                 if (newRecipe == null) {
                     System.out.println("The recipe information you entered is invalid.");
                     System.out.println("All Recipes must have : " +
-                            "A name, More than 1 Ingredient & no empty ingredient names");
+                            "A name, no more than 3 numbers in it , More than 1 Ingredient & no empty ingredient names");
                     return 0;
                 }
                 recipeList = recipeDataAndLogic.getRecipeList();

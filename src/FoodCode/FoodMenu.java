@@ -58,7 +58,7 @@ public class FoodMenu {
                 Food newFood = foodDataAndLogic.createFood();
                 if (newFood == null) {
                     System.out.println("The Food information you entered is invalid.");
-                    System.out.println("A food can't have a empty name.");
+                    System.out.println("A food can't have an empty name and more than 2 numbers in it.");
                     return 0;
                 }
                 foodList = foodDataAndLogic.getFoodList();
