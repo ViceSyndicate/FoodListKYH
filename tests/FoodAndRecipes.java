@@ -44,7 +44,7 @@ public class ObjectValidator {
     }
 
     @Test public void testValidateRecipesFileExists(){
-        String currentDir = System.getProperty("user.dir") + "\\src\\Data";
+        String currentDir = System.getProperty("user.dir") + "\\src\\Data\\";
         String fileName = currentDir + "RecipeStorage.txt";
         File storageFile = new File(fileName);
         Assertions.assertTrue(storageFile.exists());
@@ -77,7 +77,7 @@ public class ObjectValidator {
     }
 
     @Test public void testValidateFoodsFileExists(){
-        String currentDir = System.getProperty("user.dir") + "\\src\\Data";
+        String currentDir = System.getProperty("user.dir") + "\\src\\Data\\";
         String fileName = currentDir + "FoodStorage.txt";
         File storageFile = new File(fileName);
         Assertions.assertTrue(storageFile.exists());
