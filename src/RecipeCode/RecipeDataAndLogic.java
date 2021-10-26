@@ -7,9 +7,13 @@ import java.util.Scanner;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
-public class RecipeDataAndLogic implements Interface.IData {
-    String currentDir = System.getProperty("user.dir") + "\\src\\Data";
+public class RecipeDataAndLogic {
+    String currentDir = System.getProperty("user.dir") + "\\src\\Data\\";
     String fileName = currentDir + "RecipeStorage.txt";
+
+    public RecipeDataAndLogic(){
+        storageFileExists();
+    }
 
     public void storageFileExists() {
         File storageFile = new File(fileName);
@@ -35,6 +39,8 @@ public class RecipeDataAndLogic implements Interface.IData {
         }
     }
 
+
+
     public Recipe createRecipe() {
         String name;
         String[] ingredients;
@@ -56,10 +62,8 @@ public class RecipeDataAndLogic implements Interface.IData {
             isKetoFriendly = true;
         }
         Recipe recipe = new Recipe(name, ingredients, description, isKetoFriendly);
-        // If the recipe is not valid: Return null.
-        if (!validRecipe(recipe)){
-            return null;
-        }
+        // If the recipe is Invalid: Return null.
+        if (!validRecipe(recipe)){ return null; }
         return recipe;
     }
 
@@ -72,10 +76,9 @@ public class RecipeDataAndLogic implements Interface.IData {
         }
         // Check every Ingredient in the recipe and return false if any of them are empty strings.
         for (int i = 0; i < recipe.getIngredients().length; i ++){
-            if (recipe.getIngredients()[i].isEmpty()){
-                return false;
-            }
+            if (recipe.getIngredients()[i].isEmpty()) { return false; }
         }
+        if (recipe.containsMoreThanThreeNumbersInARow(recipe.getName())) { return false; }
         return true;
     }
 

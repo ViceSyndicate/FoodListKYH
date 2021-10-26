@@ -1,28 +1,30 @@
 package FoodCode;
 
-import RecipeCode.Recipe;
-
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
-public class FoodDataAndLogic implements Interface.IData {
-    String currentDir = System.getProperty("user.dir") + "\\src\\Data";
+public class FoodDataAndLogic {
+    String currentDir = System.getProperty("user.dir") + "\\src\\Data\\";
     String fileName = currentDir + "FoodStorage.txt";
 
-     public void storageFileExists(){
+    public FoodDataAndLogic(){
+        storageFileExists();
+    }
+
+     public boolean storageFileExists(){
         File storageFile = new File(fileName);
         if (!storageFile.exists()) {
             try {
-                storageFile.createNewFile();
-            } catch (Exception e){
+                return storageFile.createNewFile();
+            } catch (IOException e){
                 System.out.println(e);
             }
         }
+        return false;
     }
 
     public void storeFoodArrayList(List<Food> foodList) {
@@ -51,16 +53,16 @@ public class FoodDataAndLogic implements Interface.IData {
             isKetoFriendly = true;
         }
         Food food = new Food(foodName, isKetoFriendly);
-        if (!validFood(food)){
-            return null;
-        }
+        // If food is NOT valid
+        if (!validFood(food)){ return null; }
         return food;
     }
 
     public boolean validFood(Food food){
-        if (food.getName().isEmpty()) {
-            return false;
-        }
+        // if food.name is empty, Return false.
+        if (food.getName().isEmpty()) return false;
+        // if food.name has 3 consecutive numbers in it, return false.
+        if (food.containsMoreThanThreeNumbersInARow(food.getName())) return false;
         return true;
     }
 

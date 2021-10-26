@@ -68,14 +68,17 @@ public class RecipeMenu {
                 System.out.println("Or enter anything else than a number to return to the Menu.");
 
                 scannerInput = new Scanner(System.in);
-                if (scannerInput.hasNextInt() && scannerInput.nextInt() <= recipeList.size()-1){
-                    Recipe chosenRecipe = recipeList.get(scannerInput.nextInt());
-                    System.out.println("Name: "+chosenRecipe.getName());
-                    System.out.println("Ingredients:");
-                    for (int i = 0; i < chosenRecipe.getIngredients().length; i++) {
-                        System.out.println(" - " + chosenRecipe.getIngredients()[i]);
+                if (scannerInput.hasNextInt()) {
+                    int userInput = scannerInput.nextInt();
+                    if (userInput >= 0 && userInput <= recipeList.size()-1) {
+                        Recipe chosenRecipe = recipeList.get(userInput);
+                        System.out.println("Name: "+chosenRecipe.getName());
+                        System.out.println("Ingredients:");
+                        for (int i = 0; i < chosenRecipe.getIngredients().length; i++) {
+                            System.out.println(" - " + chosenRecipe.getIngredients()[i]);
+                        }
+                        System.out.println("Description: " + chosenRecipe.getDescription());
                     }
-                    System.out.println("Description: " + chosenRecipe.getDescription());
                 }
                 return 0;
             case 2:
