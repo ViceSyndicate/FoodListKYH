@@ -4,13 +4,18 @@ import java.io.Serializable;
 
 public class Food implements Serializable {
 
-    private String name;
-    private boolean ketoFriendly;
+    final String name;
+    final boolean ketoFriendly;
 
     public Food(String name, boolean ketoFriendly) {
         this.name = name;
         this.ketoFriendly = ketoFriendly;
     }
+
+
+
+
+
 
     // putting this here to avoid duplicate code in FoodDataAndLogic & RecipeDataAndLogic.
     // It's used to validate the name of both Foods and Recipes.
