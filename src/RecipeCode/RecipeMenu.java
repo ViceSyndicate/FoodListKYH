@@ -82,7 +82,7 @@ public class RecipeMenu {
                 }
                 return 0;
             case 2:
-                System.out.println("Selected 2. Create a RecipeCode.Recipe.");
+                System.out.println("Selected 2. Create a Recipe.");
                 Recipe newRecipe = recipeDataAndLogic.createRecipe();
                 if (newRecipe == null) {
                     System.out.println("The recipe information you entered is invalid.");

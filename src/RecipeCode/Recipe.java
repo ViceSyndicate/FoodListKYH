@@ -10,6 +10,7 @@ public class Recipe extends Food {
     private String description;
 
     public Recipe (String name, String []ingredients, String description, boolean ketoFriendly){
+        // Calls the Superclass constructor which assigns those variables.
         super(name, ketoFriendly);
         this.ingredients = ingredients;
         this.description = description;
