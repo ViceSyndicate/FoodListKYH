@@ -15,16 +15,15 @@ public class FoodDataAndLogic {
         storageFileExists();
     }
 
-     public boolean storageFileExists(){
+     public void storageFileExists(){
         File storageFile = new File(fileName);
         if (!storageFile.exists()) {
             try {
-                return storageFile.createNewFile();
+                storageFile.createNewFile();
             } catch (IOException e){
                 System.out.println(e);
             }
         }
-        return false;
     }
 
     public void storeFoodArrayList(List<Food> foodList) {
@@ -62,6 +61,7 @@ public class FoodDataAndLogic {
         // if food.name is empty, Return false.
         if (food.getName().isEmpty()) return false;
         // if food.name has 3 consecutive numbers in it, return false.
+        // I know I can simplify this but this way of writing it is easier for me to understand.
         if (food.containsMoreThanThreeNumbersInARow(food.getName())) return false;
         return true;
     }
@@ -77,9 +77,8 @@ public class FoodDataAndLogic {
                 Food food = (Food) inputObject.readObject();
                 foodList.add(food);
             }
-        }
-        catch (EOFException eof) {
-        } catch (IOException | ClassNotFoundException ex) {
+        } catch (EOFException eof) {} // Reached end of file. Everything was most likely read properly.
+        catch (IOException | ClassNotFoundException ex) {
             ex.printStackTrace();
         }
         return foodList;
@@ -89,10 +88,9 @@ public class FoodDataAndLogic {
 
         ArrayList<Food> ketoFoods = new ArrayList<>();
 
-        for (int i = 0; i < foodList.size(); i++)
-        {
-            if (foodList.get(i).getIsKetoFriendly() == true)
-                ketoFoods.add(foodList.get(i));
+        for (Food food : foodList) {
+            if (food.getIsKetoFriendly())
+                ketoFoods.add(food);
         }
         return ketoFoods;
     }

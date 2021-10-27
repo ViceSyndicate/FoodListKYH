@@ -47,13 +47,6 @@ public class FoodAndRecipes {
         mockupInvalidRecipeList.add(numbersInRecipe);
     }
 
-    @Test public void testValidateRecipesFileExists(){
-        String currentDir = System.getProperty("user.dir") + "\\src\\Data\\";
-        String fileName = currentDir + "RecipeStorage.txt";
-        File storageFile = new File(fileName);
-        Assertions.assertTrue(storageFile.exists());
-    }
-
     @Test public void testValidRecipesReturnsTrue(){
         for ( Recipe recipe : mockupValidRecipeList) {
             Assertions.assertTrue(recipeDataAndLogic.validRecipe(recipe));
@@ -78,13 +71,6 @@ public class FoodAndRecipes {
         for ( Recipe recipe : liveRecipeList) {
             Assertions.assertNotNull(recipe);
         }
-    }
-
-    @Test public void testValidateFoodsFileExists(){
-        String currentDir = System.getProperty("user.dir") + "\\src\\Data\\";
-        String fileName = currentDir + "FoodStorage.txt";
-        File storageFile = new File(fileName);
-        Assertions.assertTrue(storageFile.exists());
     }
 
     @Test public void testNoNullFoodsFromFoodsFile() {

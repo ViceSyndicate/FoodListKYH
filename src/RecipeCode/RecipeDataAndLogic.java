@@ -39,8 +39,6 @@ public class RecipeDataAndLogic {
         }
     }
 
-
-
     public Recipe createRecipe() {
         String name;
         String[] ingredients;
@@ -78,6 +76,7 @@ public class RecipeDataAndLogic {
         for (int i = 0; i < recipe.getIngredients().length; i ++){
             if (recipe.getIngredients()[i].isEmpty()) { return false; }
         }
+        // I know I can simplify this but this way of writing it is easier for me to understand.
         if (recipe.containsMoreThanThreeNumbersInARow(recipe.getName())) { return false; }
         return true;
     }
@@ -92,8 +91,9 @@ public class RecipeDataAndLogic {
                 Recipe recipe = (Recipe) inputObject.readObject();
                 recipeList.add(recipe);
             }
-        } catch (EOFException eof) {
-        } catch (IOException | ClassNotFoundException ex) {
+        } catch (EOFException eof) {} // Reached end of file. Everything was most likely read properly.
+        catch (IOException | ClassNotFoundException ex) {
+            // Most likely triggered if data is corrupt or changed.
             ex.printStackTrace();
         }
         return recipeList;
@@ -103,9 +103,9 @@ public class RecipeDataAndLogic {
 
         ArrayList<Recipe> ketoFoods = new ArrayList<Recipe>();
 
-        for (int i = 0; i < recipeList.size(); i++) {
-            if (recipeList.get(i).getIsKetoFriendly() == true)
-                ketoFoods.add(recipeList.get(i));
+        for (Recipe recipe : recipeList) {
+            if (recipe.getIsKetoFriendly())
+                ketoFoods.add(recipe);
         }
         return ketoFoods;
     }

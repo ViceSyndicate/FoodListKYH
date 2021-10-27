@@ -49,9 +49,9 @@ public class FoodMenu {
                 System.out.printf("%12s", "KETO");
                 System.out.println();
                 System.out.println(("-----------------------------------------------------------------------------"));
-                for (int i = 0; i < foodList.size(); i++) {
+                for (Food food : foodList) {
                     System.out.println(String.format("%33s %11s",
-                            foodList.get(i).getName(), foodList.get(i).getIsKetoFriendly()));
+                            food.getName(), food.getIsKetoFriendly()));
                 }
                 return 0;
             case 2:
