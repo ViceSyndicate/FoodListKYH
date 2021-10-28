@@ -9,7 +9,7 @@ import java.io.ObjectOutputStream;
 
 public class RecipeDataAndLogic {
     String currentDir = System.getProperty("user.dir") + "\\src\\Data\\";
-    String fileName = currentDir + "RecipeStorage.txt";
+    String fileName = currentDir + "RecipeStorage.bin";
 
     public RecipeDataAndLogic(){
         storageFileExists();

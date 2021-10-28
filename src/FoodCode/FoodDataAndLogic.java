@@ -9,7 +9,7 @@ import java.io.ObjectOutputStream;
 
 public class FoodDataAndLogic {
     String currentDir = System.getProperty("user.dir") + "\\src\\Data\\";
-    String fileName = currentDir + "FoodStorage.txt";
+    String fileName = currentDir + "FoodStorage.bin";
 
     public FoodDataAndLogic(){
         storageFileExists();
