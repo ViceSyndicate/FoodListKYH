@@ -71,8 +71,8 @@ public class FoodDataAndLogic {
         try {
             FileInputStream inputFile = new FileInputStream(fileName);
             ObjectInputStream inputObject = new ObjectInputStream(inputFile);
-            while (true) {
-                // May need to cast directly to "ArrayList<FoodCode.Food> foodList = (ArrayList<FoodCode.Food>)"
+            // Estimates the remaining amount of bytes that can be read from the file.
+            while (inputFile.available() > 0) { // if it's 0. We read everything we could.
                 Food food = (Food) inputObject.readObject();
                 foodList.add(food);
             }

@@ -86,8 +86,8 @@ public class RecipeDataAndLogic {
         try {
             FileInputStream inputFile = new FileInputStream(fileName);
             ObjectInputStream inputObject = new ObjectInputStream(inputFile);
-            while (true) {
-                // May need to cast directly to "ArrayList<RecipeCode.Recipe> recipeList = (ArrayList<RecipeCode.Recipe>)"
+            // Estimates the remaining amount of bytes that can be read from the file.
+            while (inputFile.available() > 0) { // if it's 0. We read everything we could.
                 Recipe recipe = (Recipe) inputObject.readObject();
                 recipeList.add(recipe);
             }
@@ -95,7 +95,6 @@ public class RecipeDataAndLogic {
             // Reached end of file.
         }
         catch (IOException | ClassNotFoundException ex) {
-            // Most likely triggered if data is corrupt or changed.
             ex.printStackTrace();
         }
         return recipeList;
