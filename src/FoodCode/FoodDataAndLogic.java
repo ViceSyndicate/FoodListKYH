@@ -71,13 +71,14 @@ public class FoodDataAndLogic {
         try {
             FileInputStream inputFile = new FileInputStream(fileName);
             ObjectInputStream inputObject = new ObjectInputStream(inputFile);
-
             while (true) {
                 // May need to cast directly to "ArrayList<FoodCode.Food> foodList = (ArrayList<FoodCode.Food>)"
                 Food food = (Food) inputObject.readObject();
                 foodList.add(food);
             }
-        } catch (EOFException eof) {} // Reached end of file. Everything was most likely read properly.
+        } catch (EOFException eof) {
+            // Reached end of file.
+        }
         catch (IOException | ClassNotFoundException ex) {
             ex.printStackTrace();
         }

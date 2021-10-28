@@ -12,11 +12,6 @@ public class Food implements Serializable {
         this.ketoFriendly = ketoFriendly;
     }
 
-
-
-
-
-
     // putting this here to avoid duplicate code in FoodDataAndLogic & RecipeDataAndLogic.
     // It's used to validate the name of both Foods and Recipes.
     public boolean containsMoreThanThreeNumbersInARow(String string){

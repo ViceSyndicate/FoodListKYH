@@ -91,9 +91,9 @@ public class RecipeDataAndLogic {
                 Recipe recipe = (Recipe) inputObject.readObject();
                 recipeList.add(recipe);
             }
-        } catch (EOFException eof) {} // Reached end of file.
-        // Everything was most likely read properly.
-        // I get a EOF Exception if i don't have this, even though it does nothing.
+        } catch (EOFException eof) {
+            // Reached end of file.
+        }
         catch (IOException | ClassNotFoundException ex) {
             // Most likely triggered if data is corrupt or changed.
             ex.printStackTrace();
@@ -117,7 +117,6 @@ public class RecipeDataAndLogic {
         ArrayList<Recipe> recipeList = getRecipeList();
         Scanner scanner = new Scanner(System.in);
         String recipeName = scanner.nextLine();
-
         for (int i = 0; i < recipeList.size(); i++) {
             if (recipeName.equalsIgnoreCase(recipeList.get(i).getName())) {
                 System.out.println("Removing: " + recipeList.get(i).getName());
