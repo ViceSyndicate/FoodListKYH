@@ -91,7 +91,9 @@ public class RecipeDataAndLogic {
                 Recipe recipe = (Recipe) inputObject.readObject();
                 recipeList.add(recipe);
             }
-        } catch (EOFException eof) {} // Reached end of file. Everything was most likely read properly.
+        } catch (EOFException eof) {} // Reached end of file.
+        // Everything was most likely read properly.
+        // I get a EOF Exception if i don't have this, even though it does nothing.
         catch (IOException | ClassNotFoundException ex) {
             // Most likely triggered if data is corrupt or changed.
             ex.printStackTrace();
