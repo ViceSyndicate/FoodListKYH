@@ -19,7 +19,7 @@ public class Food implements Serializable {
         for (int i = 0; i < string.length() - 2; i++){
             if (Character.isDigit(string.charAt(i)) &&
                     Character.isDigit(string.charAt(i+1)) &&
-                    Character.isDigit(string.charAt(i+2))){
+                        Character.isDigit(string.charAt(i+2))){
                 return true;
             }
         }

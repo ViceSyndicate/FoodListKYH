@@ -3,9 +3,9 @@ import FoodCode.FoodDataAndLogic;
 import RecipeCode.Recipe;
 import RecipeCode.RecipeDataAndLogic;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public class FoodAndRecipes {
@@ -17,15 +17,13 @@ public class FoodAndRecipes {
     FoodDataAndLogic foodDataAndLogic = new FoodDataAndLogic();
     ArrayList<Food> liveFoodList = foodDataAndLogic.getFoodList();
 
-    ArrayList<Recipe> mockupValidRecipeList = new ArrayList<Recipe>();
-    ArrayList<Recipe> mockupInvalidRecipeList = new ArrayList<Recipe>();
+    static ArrayList<Recipe> mockupValidRecipeList = new ArrayList<Recipe>();
+    static ArrayList<Recipe> mockupInvalidRecipeList = new ArrayList<Recipe>();
 
-    // Create mockup Recipes and add them to the mockup ArrayLists
-    public FoodAndRecipes(){
-        createMockupRecipeLists();
-    }
+    static ArrayList<Food> mockupValidFoodList = new ArrayList<Food>();
 
-    private void createMockupRecipeLists(){
+    // Create mockup Recipes and add them to the mockup ArrayLists for testing.
+    @BeforeAll private static void createMockupRecipeLists(){
         String[] pizzaIngredients = {"Cheese", "Dough", "Tomato Sauce", "Ham", "Oregano"};
         Recipe vezuvio = new Recipe("Pizza", pizzaIngredients, "Description Is Not Empty", false );
 
@@ -45,8 +43,22 @@ public class FoodAndRecipes {
         mockupInvalidRecipeList.add(emptyNameRecipe);
         mockupInvalidRecipeList.add(emptyIgredientsRecipe);
         mockupInvalidRecipeList.add(numbersInRecipe);
+
+        // Creating Foods for the mockupValidFoodList<Food>
+        Food potato = new Food("Potato", false);
+        Food rice = new Food("Rice", false);
+        Food cauliflower = new Food("Cauliflower", true);
+        Food beef = new Food("Wagyu Steak", true);
+
+        mockupValidFoodList.add(potato);
+        mockupValidFoodList.add(rice);
+        mockupValidFoodList.add(cauliflower);
+        mockupValidFoodList.add(beef);
+
     }
 
+    // Checks if any strings are empty & if it has more than 0 ingredients &
+    // if name has more than 2 consecutive numbers.
     @Test public void testValidRecipesReturnsTrue(){
         for ( Recipe recipe : mockupValidRecipeList) {
             Assertions.assertTrue(recipeDataAndLogic.validRecipe(recipe));
@@ -56,14 +68,6 @@ public class FoodAndRecipes {
     @Test public void testInvalidRecipesReturnsFalse(){
         for ( Recipe recipe : mockupInvalidRecipeList) {
             Assertions.assertFalse(recipeDataAndLogic.validRecipe(recipe));
-        }
-    }
-
-    // Checks if any strings are empty & if it has more than 0 ingredients &
-    // if name has more than 2 consecutive numbers.
-    @Test public void testRecipiesAreValidFromRecipeFile() {
-        for ( Recipe recipe : liveRecipeList) {
-            Assertions.assertTrue(recipeDataAndLogic.validRecipe(recipe));
         }
     }
 
@@ -90,6 +94,7 @@ public class FoodAndRecipes {
         // Creating temporary recipe here to access the function to test.
         // This function is inherited from Food because i want to check
         // The name of both Recipe.Name and Food.Name.
+
         Recipe recipe = mockupValidRecipeList.get(1);
 
         Assertions.assertFalse(recipe.containsMoreThanThreeNumbersInARow("12"));
@@ -102,5 +107,19 @@ public class FoodAndRecipes {
         Assertions.assertTrue(recipe.containsMoreThanThreeNumbersInARow("12345"));
         Assertions.assertTrue(recipe.containsMoreThanThreeNumbersInARow("1234"));
         Assertions.assertTrue(recipe.containsMoreThanThreeNumbersInARow("123"));
+    }
+
+    @Test public void testGetKetoListOnlyReturnsKetoFoods(){
+        ArrayList<Food> ketoList = foodDataAndLogic.getKetoList(mockupValidFoodList);
+        for (Food food : ketoList) {
+            Assertions.assertTrue(food.getIsKetoFriendly());
+        }
+    }
+
+    @Test public void testGetKetoListOnlyReturnsKetoRecipes(){
+        ArrayList<Recipe> ketoList = recipeDataAndLogic.getKetoList(mockupValidRecipeList);
+        for (Recipe recipe : ketoList) {
+            Assertions.assertTrue(recipe.getIsKetoFriendly());
+        }
     }
 }
