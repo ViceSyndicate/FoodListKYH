@@ -49,7 +49,7 @@ public class TestsRecipeCode {
     }
 
     @Test public void testInvalidRecipesReturnsFalse(){
-        for ( Recipe recipe : mockupInvalidRecipeList) {
+        for (Recipe recipe : mockupInvalidRecipeList) {
             Assertions.assertFalse(recipeDataAndLogic.validRecipe(recipe));
         }
     }

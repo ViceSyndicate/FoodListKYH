@@ -35,6 +35,7 @@ public class FoodMenu {
                 System.out.println("Back To Main Menu.");
                 return 10;
             case 1:
+                System.out.println("Selected 1. List Foods");
                 foodList = foodDataAndLogic.getFoodList();
                 System.out.println("Keto only? y/n: ");
 
@@ -55,6 +56,7 @@ public class FoodMenu {
                 }
                 return 0;
             case 2:
+                System.out.println("Selected 2. Create a Food");
                 Food newFood = foodDataAndLogic.createFood();
                 if (newFood == null) {
                     System.out.println("The Food information you entered is invalid.");
@@ -66,6 +68,7 @@ public class FoodMenu {
                 foodDataAndLogic.storeFoodArrayList(foodList);
                 return 0;
             case 3:
+                System.out.println("Selected 3. Delete a Food");
                 System.out.print("Enter the name of the food you want to delete: ");
                 // If failed to delete Food.
                 if (!foodDataAndLogic.deleteByName()){

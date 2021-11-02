@@ -35,7 +35,7 @@ public class RecipeMenu {
                 System.out.println("Back To Main Menu.");
                 return 10;
             case 1:
-                System.out.println("Selected 1. Ask for Keto or Not. Then List Recipies.");
+                System.out.println("Selected 1. List Recipies");
                 recipeList = recipeDataAndLogic.getRecipeList();
                 System.out.println("Keto only? y/n: ");
 
@@ -82,7 +82,7 @@ public class RecipeMenu {
                 }
                 return 0;
             case 2:
-                System.out.println("Selected 2. Create a Recipe.");
+                System.out.println("Selected 2. Create a Recipe");
                 Recipe newRecipe = recipeDataAndLogic.createRecipe();
                 if (newRecipe == null) {
                     System.out.println("The recipe information you entered is invalid.");
@@ -95,6 +95,7 @@ public class RecipeMenu {
                 recipeDataAndLogic.storeRecipeArrayList(recipeList);
                 return 0;
             case 3:
+                System.out.print("Selected 3. Delete a Recipe");
                 System.out.print("Enter the name of the food you want to delete: ");
                 // If failed to delete Recipe.
                 if (!recipeDataAndLogic.deleteByName()){
