@@ -1,7 +1,10 @@
 package RecipeCode;
 
+import FoodCode.Food;
+
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 import java.io.FileOutputStream;
@@ -116,10 +119,12 @@ public class RecipeDataAndLogic {
         ArrayList<Recipe> recipeList = getRecipeList();
         Scanner scanner = new Scanner(System.in);
         String recipeName = scanner.nextLine();
-        for (int i = 0; i < recipeList.size(); i++) {
-            if (recipeName.equalsIgnoreCase(recipeList.get(i).getName())) {
-                System.out.println("Removing: " + recipeList.get(i).getName());
-                recipeList.remove(i);
+
+        // Turn the recipeList to an Iterator to safely remove items from the recipeList.
+        Iterator<Recipe> recipeIterator = recipeList.iterator();
+        while(recipeIterator.hasNext()) {
+            if(recipeName.equalsIgnoreCase(recipeIterator.next().getName())){
+                recipeIterator.remove();
                 deleted = true;
             }
         }

@@ -2,6 +2,7 @@ package FoodCode;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 import java.io.FileOutputStream;
@@ -101,13 +102,15 @@ public class FoodDataAndLogic {
          ArrayList<Food> foodList = getFoodList();
          Scanner scanner = new Scanner(System.in);
          String foodName = scanner.nextLine();
-         for(int i = 0; i < foodList.size(); i++){
-             if (foodName.equalsIgnoreCase(foodList.get(i).getName())) {
-                 System.out.println("Removing: " + foodList.get(i).getName());
-                 foodList.remove(i);
-                 deleted = true;
-             }
-         }
+
+         // Turn the foodList to an Iterator to safely remove items from the foodList.
+        Iterator<Food> foodIterator = foodList.iterator();
+        while(foodIterator.hasNext()) {
+            if(foodName.equalsIgnoreCase(foodIterator.next().getName())){
+                foodIterator.remove();
+                deleted = true;
+            }
+        }
          // Store new FoodList after having removed the Food.
          storeFoodArrayList(foodList);
          return deleted;

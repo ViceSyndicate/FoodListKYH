@@ -95,7 +95,7 @@ public class RecipeMenu {
                 recipeDataAndLogic.storeRecipeArrayList(recipeList);
                 return 0;
             case 3:
-                System.out.print("Selected 3. Delete a Recipe");
+                System.out.println("Selected 3. Delete a Recipe");
                 System.out.print("Enter the name of the food you want to delete: ");
                 // If failed to delete Recipe.
                 if (!recipeDataAndLogic.deleteByName()){
