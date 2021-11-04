@@ -19,8 +19,8 @@ public class Main {
         Scanner inputScanner = new Scanner(System.in);
 
         System.out.println("-----------------------------------------------------------------------------");
-        System.out.println("1 - Go To Food Menu");
-        System.out.println("2 - Go To Recipies Menu");
+        System.out.println("1 - Go To Foods Menu");
+        System.out.println("2 - Go To Recipes Menu");
         System.out.println("0 - Quit\n");
 
         if (!inputScanner.hasNextInt())  {
