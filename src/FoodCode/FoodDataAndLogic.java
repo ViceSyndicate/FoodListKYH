@@ -9,14 +9,14 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
 public class FoodDataAndLogic {
-    String currentDir = System.getProperty("user.dir") + "\\out\\production\\FoodList\\Data\\";
+    String currentDir = System.getProperty("user.dir");
     String fileName = currentDir + "FoodStorage.bin";
-
     public FoodDataAndLogic(){
         storageFileExists();
     }
 
      public void storageFileExists(){
+        //System.out.println(fileName);
         File storageFile = new File(fileName);
         if (!storageFile.exists()) {
             try {

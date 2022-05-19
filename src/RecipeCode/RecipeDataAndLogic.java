@@ -11,7 +11,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
 public class RecipeDataAndLogic {
-    String currentDir = System.getProperty("user.dir") + "\\out\\production\\FoodList\\Data\\";
+    String currentDir = System.getProperty("user.dir");
     String fileName = currentDir + "RecipeStorage.bin";
 
     public RecipeDataAndLogic(){
